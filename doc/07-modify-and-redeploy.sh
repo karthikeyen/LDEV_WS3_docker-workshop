@@ -8,23 +8,19 @@
 #   res.json({ message: 'Hello from <yourname> - Updated API v2!' });
 
 # Variables
-ACR_NAME="acrworkshop<yourname>"
-RESOURCE_GROUP="rg-docker-workshop-<yourname>"
-IMAGE_NAME="docker-workshop-api"
+# ACR_NAME="acrworkshop<yourname>"
+ACR_NAME="acrworkshopkkb"
+RESOURCE_GROUP="LDEV-docker-workshop-kkb"
+IMAGE_NAME="docker-workshop-api-image"
 IMAGE_TAG="v2"
-CONTAINER_NAME="aci-workshop-<yourname>"
+CONTAINER_NAME="aci-workshop-kkb"
 
-# Get ACR login server
+# Get ACR login server and credentials
 ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --query loginServer --output tsv)
 ACR_PASSWORD=$(az acr credential show --name $ACR_NAME --query "passwords[0].value" --output tsv)
 
-# Rebuild with new tag
-docker build -t $IMAGE_NAME:$IMAGE_TAG .
-docker tag $IMAGE_NAME:$IMAGE_TAG $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
-
-# Push updated image
-az acr login --name $ACR_NAME
-docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
+# Rebuild and push using ACR Tasks (no local Docker daemon required)
+az acr build --registry $ACR_NAME --image $IMAGE_NAME:$IMAGE_TAG .
 
 # Delete old container instance
 az container delete --resource-group $RESOURCE_GROUP --name $CONTAINER_NAME --yes

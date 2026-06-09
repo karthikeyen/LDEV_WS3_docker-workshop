@@ -4,11 +4,14 @@
 # =============================================================================
 
 # Variables
-RESOURCE_GROUP="rg-docker-workshop-<yourname>"
-ACR_NAME="acrworkshop<yourname>"
-IMAGE_NAME="docker-workshop-api"
+# RESOURCE_GROUP="LDEV-docker-workshop-<yourname>"
+RESOURCE_GROUP="LDEV-docker-workshop-kkb"
+# ACR_NAME="acrldev<yourname>"
+ACR_NAME="acrldevkkb"
+IMAGE_NAME="docker-workshop-api-image"
 IMAGE_TAG="v1"
-CONTAINER_NAME="aci-workshop-<yourname>"
+# CONTAINER_NAME="ldev-web-api-container-<yourname>"  # Must be unique within Azure region
+CONTAINER_NAME="ldev-web-api-container-kkb"  # Must be unique within Azure region
 
 # Get ACR credentials
 ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --query loginServer --output tsv)
@@ -23,7 +26,10 @@ az container create \
   --registry-username $ACR_NAME \
   --registry-password $ACR_PASSWORD \
   --dns-name-label $CONTAINER_NAME \
-  --ports 3000 \
+  --ports 80 \
+  --cpu 1 \
+  --memory 1.5 \
+  --environment-variables PORT=80 \
   --os-type Linux
 
 # Get the public URL
@@ -33,6 +39,7 @@ az container show \
   --query "ipAddress.fqdn" \
   --output tsv
 
-# Test the deployed API (replace FQDN with the output above)
-echo "Test your API at: http://<FQDN>:3000"
-# curl http://<FQDN>:3000
+# Test the deployed API
+FQDN=$(az container show --resource-group $RESOURCE_GROUP --name $CONTAINER_NAME --query "ipAddress.fqdn" --output tsv)
+echo "Test your API at: http://$FQDN"
+curl http://$FQDN

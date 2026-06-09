@@ -4,25 +4,18 @@
 # =============================================================================
 
 # Variables
-ACR_NAME="acrworkshop<yourname>"
-IMAGE_NAME="docker-workshop-api"
+#ACR_NAME="acrldev<yourname>"
+ACR_NAME="acrldevkkb"
+IMAGE_NAME="docker-workshop-api-image"
 IMAGE_TAG="v1"
 
-# Login to ACR
-az acr login --name $ACR_NAME
+# Navigate to the src folder where Dockerfile and code are located
+cd src
 
-# Get ACR login server
-ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --query loginServer --output tsv)
-echo "ACR Login Server: $ACR_LOGIN_SERVER"
-
-# Build the Docker image locally
-docker build -t $IMAGE_NAME:$IMAGE_TAG .
-
-# Tag the image for ACR
-docker tag $IMAGE_NAME:$IMAGE_TAG $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
-
-# Push the image to ACR
-docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
+# Build and push the image directly in ACR (no local Docker daemon required)
+# This uses ACR Tasks to build the image in the cloud
+# The "." sends the current directory (src/) as build context to ACR
+az acr build --registry $ACR_NAME --image $IMAGE_NAME:$IMAGE_TAG .
 
 # Verify the image is in ACR
 az acr repository list --name $ACR_NAME --output table
