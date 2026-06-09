@@ -1,0 +1,12 @@
+#!/bin/bash
+# =============================================================================
+# Step 8: Cleanup resources (to avoid charges)
+# =============================================================================
+
+# Variables
+RESOURCE_GROUP="rg-docker-workshop-<yourname>"
+
+# Delete the entire resource group (removes ACR, ACI, and all resources)
+az group delete --name $RESOURCE_GROUP --yes --no-wait
+
+echo "Resource group deletion initiated. Resources will be removed shortly."
