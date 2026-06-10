@@ -10,7 +10,7 @@ IMAGE_NAME="docker-workshop-api-image"
 IMAGE_TAG="v1"
 
 # Navigate to the src folder where Dockerfile and code are located
-cd src
+cd ~/clouddrive/docker-workshop/src
 
 # Build and push the image directly in ACR (no local Docker daemon required)
 # This uses ACR Tasks to build the image in the cloud

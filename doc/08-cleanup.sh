@@ -4,7 +4,8 @@
 # =============================================================================
 
 # Variables
-RESOURCE_GROUP="rg-docker-workshop-<yourname>"
+# RESOURCE_GROUP="LDEV-docker-workshop-<yourname>"
+RESOURCE_GROUP="LDEV-docker-workshop-kkb"
 
 # Delete the entire resource group (removes ACR, ACI, and all resources)
 az group delete --name $RESOURCE_GROUP --yes --no-wait
