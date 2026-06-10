@@ -13,12 +13,12 @@ cat index.js  # Verify the change
 
 # Variables
 # ACR_NAME="acrldev<yourname>"
-ACR_NAME="acrldevkkb"
-RESOURCE_GROUP="LDEV-docker-workshop-kkb"
+ACR_NAME="acrldevkarthik"
+RESOURCE_GROUP="LDEV-docker-workshop-karthik"
 IMAGE_NAME="docker-workshop-api-image"
 IMAGE_TAG="v2"
 # CONTAINER_NAME="ldev-web-api-container-<yourname>"
-CONTAINER_NAME="ldev-web-api-container-kkb"
+CONTAINER_NAME="ldev-web-api-container-karthik"
 
 # Get ACR login server and credentials
 ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --query loginServer --output tsv)

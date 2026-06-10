@@ -5,13 +5,14 @@
 
 # Variables
 # RESOURCE_GROUP="LDEV-docker-workshop-<yourname>"
-RESOURCE_GROUP="LDEV-docker-workshop-kkb"
+
+RESOURCE_GROUP="LDEV-docker-workshop-karthik"
 # ACR_NAME="acrldev<yourname>"
-ACR_NAME="acrldevkkb"
+ACR_NAME="acrldevkarthik"
 IMAGE_NAME="docker-workshop-api-image"
 IMAGE_TAG="v1"
 # CONTAINER_NAME="ldev-web-api-container-<yourname>"  # Must be unique within Azure region
-CONTAINER_NAME="ldev-web-api-container-kkb"  # Must be unique within Azure region
+CONTAINER_NAME="ldev-web-api-container-karthik"  # Must be unique within Azure region
 
 # Get ACR credentials
 ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --query loginServer --output tsv)

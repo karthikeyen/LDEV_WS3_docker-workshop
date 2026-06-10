@@ -4,7 +4,10 @@
 # =============================================================================
 
 # Variables - participants should use their own unique name
-RESOURCE_GROUP="LDEV-docker-workshop-<yourname>"
+
+# RESOURCE_GROUP="LDEV-docker-workshop-<yourname>"
+
+RESOURCE_GROUP="LDEV-docker-workshop-karthik"
 LOCATION="southeastasia"
 
 # Create the resource group

@@ -5,8 +5,9 @@
 
 # Variables
 # RESOURCE_GROUP="LDEV-docker-workshop-<yourname>"
-RESOURCE_GROUP="LDEV-docker-workshop-kkb"
-ACR_NAME="acrldevkkb"  # Must be globally unique, alphanumeric only
+RESOURCE_GROUP="LDEV-docker-workshop-karthik"
+
+ACR_NAME="acrldevkarthik"  # Must be globally unique, alphanumeric only
 
 # Create ACR with Basic SKU (sufficient for workshop)
 az acr create \
